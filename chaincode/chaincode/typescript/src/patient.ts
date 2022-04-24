@@ -7,10 +7,10 @@ export class Patient {
 
     // public patientID: string;
     // public patientIDprivate: string;
-    public FirstName: string;
-    public FirstNameprivate: string;
-    public LastName: string;
-    public LastNameprivate: string;
+    public firstName: string;
+    public firstNameprivate: string;
+    public lastName: string;
+    public lastNameprivate: string;
     public birthday: string;
     public birthdayprivate: string;
     public contact: string;

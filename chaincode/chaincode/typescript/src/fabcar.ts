@@ -54,44 +54,44 @@ export class FabCar extends Contract {
         const data: Patient = JSON.parse(info.toString());
         const value = data.value;
 
-        const FirstName = data.FirstName;
-        const FirstNameprivate = data.FirstNameprivate ;
+        const firstName = data.firstName;
+        const firstNameprivate = data.firstNameprivate;
 
-        const LastName = data.LastName;
-        const LastNameprivate = data.LastNameprivate ;
+        const lastName = data.lastName;
+        const lastNameprivate = data.lastNameprivate;
 
         const birthday = data.birthday;
-        const birthdayprivate = data.birthdayprivate ;
+        const birthdayprivate = data.birthdayprivate;
 
         const contact = data.contact;
-        const contactprivate = data.contactprivate ;
+        const contactprivate = data.contactprivate;
 
         const address = data.address;
-        const addressprivate = data.addressprivate ;
+        const addressprivate = data.addressprivate;
 
         const bloodGroup = data.bloodGroup;
-        const bloodGroupprivate = data.bloodGroupprivate ;
+        const bloodGroupprivate = data.bloodGroupprivate;
 
         const Allergies = data.Allergies;
-        const Allergiesprivate = data.Allergiesprivate ;
+        const Allergiesprivate = data.Allergiesprivate;
 
         const Diagnosis = data.Diagnosis;
-        const Diagnosisprivate = data.Diagnosisprivate ;
+        const Diagnosisprivate = data.Diagnosisprivate;
 
         const treatment = data.treatment;
-        const treatmentprivate = data.treatmentprivate ;
+        const treatmentprivate = data.treatmentprivate;
 
         const lastVisits = data.lastVisits;
-        const lastVisitsprivate = data.lastVisitsprivate ;
+        const lastVisitsprivate = data.lastVisitsprivate;
 
         const doctorsWithpermission = data.doctorsWithpermission;
-        const doctorsWithpermissionprivate = data.doctorsWithpermissionprivate ;
+        const doctorsWithpermissionprivate = data.doctorsWithpermissionprivate;
 
         const patients: Patient = {
             value,
 
-            FirstName,
-            LastName,
+            firstName,
+            lastName,
             birthday,
             contact,
             address,
@@ -101,8 +101,8 @@ export class FabCar extends Contract {
             treatment,
             lastVisits,
             doctorsWithpermission,
-            FirstNameprivate,
-            LastNameprivate,
+            firstNameprivate,
+            lastNameprivate,
             birthdayprivate,
             contactprivate,
             addressprivate,
@@ -112,7 +112,7 @@ export class FabCar extends Contract {
             treatmentprivate,
             lastVisitsprivate,
             doctorsWithpermissionprivate,
-  
+
 
         };
 
@@ -183,47 +183,47 @@ export class FabCar extends Contract {
         var patient: Patient = JSON.parse(AssetAsBytes.toString());
         const data = JSON.parse(update);
 
-         patient.value = data.value || patient.value  ;
+        patient.value = data.value || patient.value;
 
-         patient.FirstName = data.FirstName || patient.FirstName  ;
-         patient.FirstNameprivate = data.FirstNameprivate.toString()?data.FirstNameprivate : patient.FirstNameprivate  ;
+        patient.firstName = data.firstName || patient.firstName;
+        patient.firstNameprivate = data.firstNameprivate.toString() ? data.firstNameprivate : patient.firstNameprivate;
 
-         patient.LastName = data.LastName || patient.LastName  ;
-         patient.LastNameprivate = data.LastNameprivate.toString()?data.LastNameprivate : patient.LastNameprivate  ;
+        patient.lastName = data.lastName || patient.lastName;
+        patient.lastNameprivate = data.lastNameprivate.toString() ? data.lastNameprivate : patient.lastNameprivate;
 
-         patient.birthday = data.birthday || patient.birthday  ;
-         patient.birthdayprivate = data.birthdayprivate.toString()?data.birthdayprivate : patient.birthdayprivate  ;
+        patient.birthday = data.birthday || patient.birthday;
+        patient.birthdayprivate = data.birthdayprivate.toString() ? data.birthdayprivate : patient.birthdayprivate;
 
-         patient.contact = data.contact || patient.contact  ;
-         patient.contactprivate = data.contactprivate.toString()?data.contactprivate : patient.contactprivate  ;
+        patient.contact = data.contact || patient.contact;
+        patient.contactprivate = data.contactprivate.toString() ? data.contactprivate : patient.contactprivate;
 
-         patient.address = data.address || patient.address  ;
-         patient.addressprivate = data.addressprivate.toString()?data.addressprivate : patient.addressprivate  ;
+        patient.address = data.address || patient.address;
+        patient.addressprivate = data.addressprivate.toString() ? data.addressprivate : patient.addressprivate;
 
-         patient.bloodGroup = data.bloodGroup || patient.bloodGroup  ;
-         patient.bloodGroupprivate = data.bloodGroupprivate.toString()?data.bloodGroupprivate : patient.bloodGroupprivate  ;
+        patient.bloodGroup = data.bloodGroup || patient.bloodGroup;
+        patient.bloodGroupprivate = data.bloodGroupprivate.toString() ? data.bloodGroupprivate : patient.bloodGroupprivate;
 
-         patient.Allergies = data.Allergies || patient.Allergies  ;
-         patient.Allergiesprivate = data.Allergiesprivate.toString()?data.Allergiesprivate : patient.Allergiesprivate  ;
+        patient.Allergies = data.Allergies || patient.Allergies;
+        patient.Allergiesprivate = data.Allergiesprivate.toString() ? data.Allergiesprivate : patient.Allergiesprivate;
 
-         patient.Diagnosis = data.Diagnosis || patient.Diagnosis  ;
-         patient.Diagnosisprivate = data.Diagnosisprivate.toString()?data.Diagnosisprivate : patient.Diagnosisprivate  ;
+        patient.Diagnosis = data.Diagnosis || patient.Diagnosis;
+        patient.Diagnosisprivate = data.Diagnosisprivate.toString() ? data.Diagnosisprivate : patient.Diagnosisprivate;
 
-         patient.treatment = data.treatment || patient.treatment  ;
-         patient.treatmentprivate = data.treatmentprivate.toString()?data.treatmentprivate : patient.treatmentprivate  ;
+        patient.treatment = data.treatment || patient.treatment;
+        patient.treatmentprivate = data.treatmentprivate.toString() ? data.treatmentprivate : patient.treatmentprivate;
 
-         patient.lastVisits = data.lastVisits || patient.lastVisits  ;
-         patient.lastVisitsprivate = data.lastVisitsprivate.toString()?data.lastVisitsprivate : patient.lastVisitsprivate  ;
+        patient.lastVisits = data.lastVisits || patient.lastVisits;
+        patient.lastVisitsprivate = data.lastVisitsprivate.toString() ? data.lastVisitsprivate : patient.lastVisitsprivate;
 
-         patient.doctorsWithpermission = data.doctorsWithpermission || patient.doctorsWithpermission  ;
-         patient.doctorsWithpermissionprivate = data.doctorsWithpermissionprivate.toString()?data.doctorsWithpermissionprivate : patient.doctorsWithpermissionprivate  ;
+        patient.doctorsWithpermission = data.doctorsWithpermission || patient.doctorsWithpermission;
+        patient.doctorsWithpermissionprivate = data.doctorsWithpermissionprivate.toString() ? data.doctorsWithpermissionprivate : patient.doctorsWithpermissionprivate;
 
         await ctx.stub.putState(
             patientID,
             Buffer.from(JSON.stringify(patient))
         );
     }
-    
+
     async GetAssetHistory(ctx, ID) {
         let iterator = await ctx.stub.getHistoryForKey(ID);
         let result = [];
@@ -266,7 +266,7 @@ export class FabCar extends Contract {
 
                     if (typeof record[property] !== "boolean") continue;
 
-                    if (record[property]) {delete record[property.split('private')[0]]};
+                    if (record[property]) { delete record[property.split('private')[0]] };
 
 
 
@@ -305,44 +305,44 @@ export class FabCar extends Contract {
         const data: Patient = JSON.parse(info.toString());
         const value = data.value;
 
-        const FirstName = data.FirstName;
-        const FirstNameprivate = data.FirstNameprivate ;
+        const firstName = data.firstName;
+        const firstNameprivate = data.firstNameprivate;
 
-        const LastName = data.LastName;
-        const LastNameprivate = data.LastNameprivate ;
+        const lastName = data.lastName;
+        const lastNameprivate = data.lastNameprivate;
 
         const birthday = data.birthday;
-        const birthdayprivate = data.birthdayprivate ;
+        const birthdayprivate = data.birthdayprivate;
 
         const contact = data.contact;
-        const contactprivate = data.contactprivate ;
+        const contactprivate = data.contactprivate;
 
         const address = data.address;
-        const addressprivate = data.addressprivate ;
+        const addressprivate = data.addressprivate;
 
         const bloodGroup = data.bloodGroup;
-        const bloodGroupprivate = data.bloodGroupprivate ;
+        const bloodGroupprivate = data.bloodGroupprivate;
 
         const Allergies = data.Allergies;
-        const Allergiesprivate = data.Allergiesprivate ;
+        const Allergiesprivate = data.Allergiesprivate;
 
         const Diagnosis = data.Diagnosis;
-        const Diagnosisprivate = data.Diagnosisprivate ;
+        const Diagnosisprivate = data.Diagnosisprivate;
 
         const treatment = data.treatment;
-        const treatmentprivate = data.treatmentprivate ;
+        const treatmentprivate = data.treatmentprivate;
 
         const lastVisits = data.lastVisits;
-        const lastVisitsprivate = data.lastVisitsprivate ;
+        const lastVisitsprivate = data.lastVisitsprivate;
 
         const doctorsWithpermission = data.doctorsWithpermission;
-        const doctorsWithpermissionprivate = data.doctorsWithpermissionprivate ;
+        const doctorsWithpermissionprivate = data.doctorsWithpermissionprivate;
 
         const patients: Patient = {
             value,
 
-            FirstName,
-            LastName,
+            firstName,
+            lastName,
             birthday,
             contact,
             address,
@@ -352,8 +352,8 @@ export class FabCar extends Contract {
             treatment,
             lastVisits,
             doctorsWithpermission,
-            FirstNameprivate,
-            LastNameprivate,
+            firstNameprivate,
+            lastNameprivate,
             birthdayprivate,
             contactprivate,
             addressprivate,
@@ -363,7 +363,7 @@ export class FabCar extends Contract {
             treatmentprivate,
             lastVisitsprivate,
             doctorsWithpermissionprivate,
-  
+
 
         };
 

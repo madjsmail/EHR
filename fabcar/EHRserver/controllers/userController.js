@@ -13,10 +13,12 @@ const { v4: uuidv4 } = require("uuid");
 const genWallet = require("./helpers/user/genWallet");
 const authMid = require("../middleware/isAuth");
 exports.deleteUser = async (req, res, next) => {
+  
+  
   couch
     .del(
       "users",
-      req.body._id.toString().trim(),
+      req.body.email.toString().trim(),
       req.body._rev.toString().trim()
     )
     .then(
@@ -61,7 +63,7 @@ exports.createUser = async (req, res, next) => {
   body.forEach((element) => {
     if (!req.body.hasOwnProperty(element)) {
       res.status(400).send({
-        msg: `${element} is require`,
+        message: `${element} is require`,
       });
       // return next(`${element} is require`);
 
@@ -108,13 +110,13 @@ exports.createUser = async (req, res, next) => {
 
         res.json({
           data: data,
-          msg: `user  ${req.body.username} created`,
+          message: `user  ${req.body.username} created`,
         });
       },
       (err) => {
         console.log(err);
         res.json({
-          msg: err,
+          message: err,
         });
         throw new Error(err).message;
 
@@ -140,7 +142,7 @@ exports.createUser = async (req, res, next) => {
     })
     .catch((err) => {
       res.json({
-        msg: err,
+        message: err,
       });
       exit(1);
     });
@@ -211,7 +213,7 @@ exports.getOneUser = async (req, res, next) => {
       // ...or err.code=EUNKNOWN if statusCode is unexpected
       res
         .json({
-          msg: err,
+          message: err,
         })
         .status(300);
       return;
@@ -239,7 +241,7 @@ exports.updateUser = async (req, res, next) => {
   body.forEach((element) => {
     if (!req.body.hasOwnProperty(element)) {
       res.status(400).send({
-        msg: `${element} is require`,
+        message: `${element} is require`,
       });
       // return next(`${element} is require`);
 
@@ -302,7 +304,7 @@ exports.updateUser = async (req, res, next) => {
             // ...or err.code=EFIELDMISSING if either _id or _rev fields are missing
             res
               .json({
-                msg: err,
+                message: err,
               })
               .status(300);
             throw new Error(err).message;
@@ -315,7 +317,7 @@ exports.updateUser = async (req, res, next) => {
       // ...or err.code=EUNKNOWN if statusCode is unexpected
       res
         .json({
-          msg: err,
+          message: err,
         })
         .status(300);
       return;

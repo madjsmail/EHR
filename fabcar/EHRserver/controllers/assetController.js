@@ -14,13 +14,13 @@ exports.deleteAsset = async (req, res, next) => {
    * Admin
    */
   try {
-    deleteAssetHelper.deleteAsset(req.params.patientID);
+    deleteAssetHelper.deleteAsset(req.params.patientID,authMid.decodedToken(req, res, next).id);
     res.json({
-      msg: "asset deleted",
+      message: "asset deleted",
     });
   } catch (error) {
     res.json({
-      msg: "error invoking chain code delete method",
+      message: "error invoking chain code delete method",
     });
     process.exit(1);
   }
@@ -42,12 +42,12 @@ exports.postAsset = async (req, res, next) => {
     .createAsset(req.body, patientID, authMid.decodedToken(req, res, next).id)
     .then(() => {
       res.json({
-        msg: "Transaction has been submitted",
+        message: "Transaction has been submitted",
       });
     })
     .catch((err) => {
       res.json({
-        msg: "Failed to submit transaction",
+        message: "Failed to submit transaction",
         err: err,
       });
       throw new Error(err).message;
@@ -78,7 +78,7 @@ exports.getOneAssets = async (req, res, next) => {
     )
   ) {
     res.status(401).json({
-      msg: "you are not allowed this action ",
+      message: "you are not allowed this action ",
     });
     throw new Error("you are not allowed this action ").message;
   }
@@ -94,19 +94,19 @@ exports.getOneAssets = async (req, res, next) => {
       )
       .then((data) => {
         res.json({
-          msg: JSON.parse(data),
+          message: JSON.parse(data),
         });
       })
       .catch((err) => {
         res.json({
-          msg: "error invoking chain code",
+          message: "error invoking chain code",
         });
       });
     return;
   }
 
   res.json({
-    msg: "error with  id code : code if false or a  patient with this id don't exsite",
+    message: "error with  id code : code if false or a  patient with this id don't exsite",
   });
 };
 
@@ -118,7 +118,7 @@ exports.updateAsset = async (req, res, next) => {
     )
   ) {
     res.status(401).json({
-      msg: "you are not allowed this action ",
+      message: "you are not allowed this action ",
     });
     throw new Error("you are not allowed this action ").message;
   }
@@ -138,12 +138,12 @@ exports.updateAsset = async (req, res, next) => {
       )
       .then(() => {
         res.json({
-          msg: "Transaction has been submitted",
+          message: "Transaction has been submitted",
         });
       })
       .catch((err) => {
         res.json({
-          msg: "Failed to submit transaction",
+          message: "Failed to submit transaction",
           err: err,
         });
         process.exit(1);
@@ -152,7 +152,7 @@ exports.updateAsset = async (req, res, next) => {
   }
 
   res.json({
-    msg: "error with  id code : code if false or a  patient with this id don't exsite",
+    message: "error with  id code : code if false or a  patient with this id don't exsite",
   });
 };
 
@@ -165,7 +165,7 @@ exports.getAssetHistory = async (req, res, next) => {
     )
   ) {
     res.status(401).json({
-      msg: "you are not allowed this action ",
+      message: "you are not allowed this action ",
     });
     throw new Error("you are not allowed this action ").message;
   }
@@ -184,13 +184,13 @@ exports.getAssetHistory = async (req, res, next) => {
       .then((data) => {
         console.log(JSON.parse(data));
         res.json({
-          msg: "Transaction has been submitted",
+          message: "Transaction has been submitted",
           data: JSON.parse(data),
         });
       })
       .catch((err) => {
         res.json({
-          msg: "Failed to submit transaction",
+          message: "Failed to submit transaction",
           err: "err",
         });
         throw new Error(err).message;
@@ -200,7 +200,7 @@ exports.getAssetHistory = async (req, res, next) => {
   }
 
   res.json({
-    msg: "error with  id code : code if false or a  patient with this id don't exsite",
+    message: "error with  id code : code if false or a  patient with this id don't exsite",
   });
 };
 

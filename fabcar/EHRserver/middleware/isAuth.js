@@ -19,6 +19,9 @@ exports.requireAuth = (req, res, next) => {
   if (!decodedToken) {
     const error = new Error("Not authenticated.");
     error.statusCode = 401;
+    res.status(403).send({
+      message: error.message,
+    });
     throw error;
   }
   req.userId = decodedToken.userId;
@@ -55,7 +58,7 @@ exports.isAdmin = (req, res, next) => {
     next();
   } else {
     res.status(403).send({
-      msg: "admin only",
+      message: "admin only",
     });
   }
 };
@@ -64,8 +67,10 @@ exports.isOwner = async (req, res, next) => {
   const authHeader = req.get("Authorization");
   if (!authHeader) {
     const error = new Error("Not authenticated.");
-    error.statusCode = 401;
-    throw error;
+    res.status(403).send({
+      message: error.message,
+    });
+    throw error
   }
   const token = authHeader;
   console.log(authHeader);
@@ -92,7 +97,7 @@ exports.isOwner = async (req, res, next) => {
     next();
   } else {
     res.status(403).send({
-      msg: "you are not allowed this action",
+      message: "you are not allowed this action",
     });
   }
 };

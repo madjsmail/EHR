@@ -73,7 +73,7 @@ exports.genWallet = async (ORG, IDs, currentUser) => {
       );
       console.log("Run the enrollAdmin.js application before retrying");
       res.json({
-        msg: 'An identity for the admin user "admin" does not exist in the wallet',
+        message: 'An identity for the admin user "admin" does not exist in the wallet',
       });
       throw new Error(
         "An identity for the admin user 'admin' does not exist in the wallet"

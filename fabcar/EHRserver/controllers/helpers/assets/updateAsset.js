@@ -65,10 +65,10 @@ exports.updateAsset = async (data, patientID, currentUser) => {
     const test = {
       value: data.value,
 
-      FirstName: data.FirstName,
-      FirstNameprivate: data.FirstNameprivate,
-      LastName: data.LastName,
-      LastNameprivate: data.LastNameprivate,
+      firstName: data.firstName,
+      firstNameprivate: data.firstNameprivate,
+      lastName: data.lastName,
+      lastNameprivate: data.lastNameprivate,
       birthday: data.birthday,
       birthdayprivate: data.birthdayprivate,
       contact: data.contact,
@@ -93,7 +93,10 @@ exports.updateAsset = async (data, patientID, currentUser) => {
       "UpdateAsset",
       patientID,
       `${JSON.stringify(test)}`
-    );
+    ).catch((err)=>{
+
+      throw Error(err).message
+    });
 
     console.log("Transaction has been submitted");
 

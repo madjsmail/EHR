@@ -2,7 +2,7 @@ const { Gateway, Wallets } = require("fabric-network");
 const fs = require("fs");
 const path = require("path");
 
-exports.deleteAsset = async (patientID) => {
+exports.deleteAsset = async (patientID,currentUser) => {
   try {
     // load the network configuration
     const ccpPath = path.resolve(
@@ -26,7 +26,7 @@ exports.deleteAsset = async (patientID) => {
     console.log(`Wallet path: ${walletPath}`);
 
     // Check to see if we've already enrolled the user.
-    const identity = await wallet.get("appUser");
+    const identity = await wallet.get(currentUser);
     if (!identity) {
       console.log(
         'An identity for the user "appUser" does not exist in the wallet'
@@ -39,7 +39,7 @@ exports.deleteAsset = async (patientID) => {
     const gateway = new Gateway();
     await gateway.connect(ccp, {
       wallet,
-      identity: "appUser",
+      identity: currentUser,
       discovery: { enabled: true, asLocalhost: true },
     });
 

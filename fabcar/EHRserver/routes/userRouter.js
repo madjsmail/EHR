@@ -8,10 +8,10 @@ const isAuth = require("../middleware/isAuth");
 
 router.get("/", isAuth.isAdmin, userController.getAllUsers);
 
-router.get("/:email", userController.getOneUser);
+router.get("/:email", isAuth.isAdmin,userController.getOneUser);
 router.post("/", isAuth.isAdmin, userController.createUser);
 router.delete("/", isAuth.isAdmin, userController.deleteUser);
-router.put("/", userController.updateUser);
+router.put("/", isAuth.isOwner,userController.updateUser);
 
 // router.put("/aprove/:id", isAuth.isAdmin, assetController.updateassets);
 

@@ -73,4 +73,4 @@ app.use((error, req, res, next) => {
 try {
   app.listen(process.env.PORT || 8080);
   console.log("up and running on port " + (process.env.PORT || 8080));
-} catch (error) {}
+} catch (error) { }

@@ -29,7 +29,7 @@ exports.updateAsset = async (data, patientID, currentUser) => {
     let ccp = JSON.parse(fs.readFileSync(ccpPath, "utf8"));
 
     // Create a new file system based wallet for managing identities.
-    const walletPath = path.join(process.cwd(), "wallet");
+    const walletPath = path.join(process.cwd(), "..", "wallet");
     const wallet = await Wallets.newFileSystemWallet(walletPath);
     console.log(`Wallet path: ${walletPath}`);
 
@@ -38,8 +38,8 @@ exports.updateAsset = async (data, patientID, currentUser) => {
     if (!identity) {
       console.log(
         "An identity for the user" +
-          currentUser +
-          " does not exist in the wallet"
+        currentUser +
+        " does not exist in the wallet"
       );
       console.log("Run the registerUser.js application before retrying");
       return;
@@ -62,40 +62,40 @@ exports.updateAsset = async (data, patientID, currentUser) => {
     // Get the contract from the network.
     const contract = network.getContract("fabcar");
     console.log(data);
-    const test = {
-      value: data.value,
+    // const test = {
+    //   value: data.value,
 
-      firstName: data.firstName,
-      firstNameprivate: data.firstNameprivate,
-      lastName: data.lastName,
-      lastNameprivate: data.lastNameprivate,
-      birthday: data.birthday,
-      birthdayprivate: data.birthdayprivate,
-      contact: data.contact,
-      contactprivate: data.contactprivate,
-      address: data.address,
-      addressprivate: data.addressprivate,
-      bloodGroup: data.bloodGroup,
-      bloodGroupprivate: data.bloodGroupprivate,
-      Allergies: data.Allergies,
-      Allergiesprivate: data.Allergiesprivate,
-      Diagnosis: data.Diagnosis,
-      Diagnosisprivate: data.Diagnosisprivate,
-      treatment: data.treatment,
-      treatmentprivate: data.treatmentprivate,
-      lastVisits: data.lastVisits,
-      lastVisitsprivate: data.lastVisitsprivate,
-      doctorsWithpermission: data.doctorsWithpermission,
-      doctorsWithpermissionprivate: data.doctorsWithpermissionprivate,
-    };
+    //   firstName: data.firstName,
+    //   firstNameprivate: data.firstNameprivate,
+    //   lastName: data.lastName,
+    //   lastNameprivate: data.lastNameprivate,
+    //   birthday: data.birthday,
+    //   birthdayprivate: data.birthdayprivate,
+    //   contact: data.contact,
+    //   contactprivate: data.contactprivate,
+    //   address: data.address,
+    //   addressprivate: data.addressprivate,
+    //   bloodGroup: data.bloodGroup,
+    //   bloodGroupprivate: data.bloodGroupprivate,
+    //   Allergies: data.Allergies,
+    //   Allergiesprivate: data.Allergiesprivate,
+    //   Diagnosis: data.Diagnosis,
+    //   Diagnosisprivate: data.Diagnosisprivate,
+    //   treatment: data.treatment,
+    //   treatmentprivate: data.treatmentprivate,
+    //   lastVisits: data.lastVisits,
+    //   lastVisitsprivate: data.lastVisitsprivate,
+    //   doctorsWithpermission: data.doctorsWithpermission,
+    //   doctorsWithpermissionprivate: data.doctorsWithpermissionprivate,
+    // };
 
     await contract.submitTransaction(
       "UpdateAsset",
       patientID,
-      `${JSON.stringify(test)}`
-    ).catch((err)=>{
+      `${JSON.stringify(data)}`
+    ).catch((err) => {
 
-      throw Error(err).message
+      throw Error(err).message;
     });
 
     console.log("Transaction has been submitted");

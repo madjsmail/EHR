@@ -7,11 +7,11 @@ const isAuth = require("../middleware/isAuth");
 // router.get("/:patientID", assetController.getOneAssets);
 
 router.get("/", isAuth.isAdmin, userController.getAllUsers);
-
-router.get("/:email", isAuth.isAdmin,userController.getOneUser);
+router.get("/doctors", userController.getAllDoctors);
+router.get("/:email", isAuth.isAdmin, userController.getOneUser);
 router.post("/", isAuth.isAdmin, userController.createUser);
 router.delete("/", isAuth.isAdmin, userController.deleteUser);
-router.put("/", isAuth.isOwner,userController.updateUser);
+router.put("/", isAuth.isOwner, userController.updateUser);
 
 // router.put("/aprove/:id", isAuth.isAdmin, assetController.updateassets);
 

@@ -54,64 +54,59 @@ export class FabCar extends Contract {
         const data: Patient = JSON.parse(info.toString());
         const value = data.value;
 
-        const firstName = data.firstName;
-        const firstNameprivate = data.firstNameprivate;
+        // const firstName = data.firstName;
+        // const firstNameprivate = data.firstNameprivate;
+        // const lastName = data.lastName;
+        // const lastNameprivate = data.lastNameprivate;
+        // const birthday = data.birthday;
+        // const birthdayprivate = data.birthdayprivate;
+        // const contact = data.contact;
+        // const contactprivate = data.contactprivate;
+        // const address = data.address;
+        // const addressprivate = data.addressprivate;
+        const bloodGroup = data.bloodGroup || '';
+        const bloodGroupprivate = true;
+        const Allergies = data.Allergies || '';
+        const Allergiesprivate = true;
+        const Diagnosis = data.Diagnosis || '';
+        const Diagnosisprivate = true;
+        const treatment = data.treatment || '';
+        const treatmentprivate = true;
+        const lastVisits = data.lastVisits || '';
+        const lastVisitsprivate = true;
+        const doctorsWithpermission = data.doctorsWithpermission || '';
+        const doctorsWithpermissionprivate = true;
+        const radio = data.radio || ''
+        const radioprivate = true
+        const symptoms = data.symptoms || ''
+        const symptomsprivate = true
 
-        const lastName = data.lastName;
-        const lastNameprivate = data.lastNameprivate;
-
-        const birthday = data.birthday;
-        const birthdayprivate = data.birthdayprivate;
-
-        const contact = data.contact;
-        const contactprivate = data.contactprivate;
-
-        const address = data.address;
-        const addressprivate = data.addressprivate;
-
-        const bloodGroup = data.bloodGroup;
-        const bloodGroupprivate = data.bloodGroupprivate;
-
-        const Allergies = data.Allergies;
-        const Allergiesprivate = data.Allergiesprivate;
-
-        const Diagnosis = data.Diagnosis;
-        const Diagnosisprivate = data.Diagnosisprivate;
-
-        const treatment = data.treatment;
-        const treatmentprivate = data.treatmentprivate;
-
-        const lastVisits = data.lastVisits;
-        const lastVisitsprivate = data.lastVisitsprivate;
-
-        const doctorsWithpermission = data.doctorsWithpermission;
-        const doctorsWithpermissionprivate = data.doctorsWithpermissionprivate;
+        const report = data.report || ''
+        const reportprivate = true
 
         const patients: Patient = {
-            value,
+            // ...data
+            // value,
 
-            firstName,
-            lastName,
-            birthday,
-            contact,
-            address,
             bloodGroup,
-            Allergies,
-            Diagnosis,
-            treatment,
-            lastVisits,
-            doctorsWithpermission,
-            firstNameprivate,
-            lastNameprivate,
-            birthdayprivate,
-            contactprivate,
-            addressprivate,
             bloodGroupprivate,
+            Allergies,
             Allergiesprivate,
+            Diagnosis,
             Diagnosisprivate,
+            treatment,
             treatmentprivate,
+            lastVisits,
             lastVisitsprivate,
+            doctorsWithpermission,
             doctorsWithpermissionprivate,
+            report,
+            reportprivate,
+            radio,
+            radioprivate,
+            symptoms,
+            symptomsprivate,
+
 
 
         };
@@ -174,7 +169,7 @@ export class FabCar extends Contract {
         return "Assets deleted";
     }
 
-    //// not working
+
     public async UpdateAsset(ctx: Context, patientID: string, update: string) {
         const AssetAsBytes = await ctx.stub.getState(patientID); // get the car from chaincode state
         if (!AssetAsBytes || AssetAsBytes.length === 0) {
@@ -185,38 +180,48 @@ export class FabCar extends Contract {
 
         patient.value = data.value || patient.value;
 
-        patient.firstName = data.firstName || patient.firstName;
-        patient.firstNameprivate = data.firstNameprivate.toString() ? data.firstNameprivate : patient.firstNameprivate;
+        // patient.firstName = data.firstName || patient.firstName;
+        // patient.firstNameprivate = data.firstNameprivate?.toString() ? data.firstNameprivate : patient.firstNameprivate;
 
-        patient.lastName = data.lastName || patient.lastName;
-        patient.lastNameprivate = data.lastNameprivate.toString() ? data.lastNameprivate : patient.lastNameprivate;
+        // patient.lastName = data.lastName || patient.lastName;
+        // patient.lastNameprivate = data.lastNameprivate?.toString() ? data.lastNameprivate : patient.lastNameprivate;
 
-        patient.birthday = data.birthday || patient.birthday;
-        patient.birthdayprivate = data.birthdayprivate.toString() ? data.birthdayprivate : patient.birthdayprivate;
+        // patient.birthday = data.birthday || patient.birthday;
+        // patient.birthdayprivate = data.birthdayprivate?.toString() ? data.birthdayprivate : patient.birthdayprivate;
 
-        patient.contact = data.contact || patient.contact;
-        patient.contactprivate = data.contactprivate.toString() ? data.contactprivate : patient.contactprivate;
+        // patient.contact = data.contact || patient.contact;
+        // patient.contactprivate = data.contactprivate?.toString() ? data.contactprivate : patient.contactprivate;
 
-        patient.address = data.address || patient.address;
-        patient.addressprivate = data.addressprivate.toString() ? data.addressprivate : patient.addressprivate;
+        // patient.address = data.address || patient.address;
+        // patient.addressprivate = data.addressprivate?.toString() ? data.addressprivate : patient.addressprivate;
 
         patient.bloodGroup = data.bloodGroup || patient.bloodGroup;
-        patient.bloodGroupprivate = data.bloodGroupprivate.toString() ? data.bloodGroupprivate : patient.bloodGroupprivate;
+        patient.bloodGroupprivate = data.bloodGroupprivate?.toString() ? data.bloodGroupprivate : patient.bloodGroupprivate;
 
         patient.Allergies = data.Allergies || patient.Allergies;
-        patient.Allergiesprivate = data.Allergiesprivate.toString() ? data.Allergiesprivate : patient.Allergiesprivate;
+        patient.Allergiesprivate = data.Allergiesprivate?.toString() ? data.Allergiesprivate : patient.Allergiesprivate;
 
         patient.Diagnosis = data.Diagnosis || patient.Diagnosis;
-        patient.Diagnosisprivate = data.Diagnosisprivate.toString() ? data.Diagnosisprivate : patient.Diagnosisprivate;
+        patient.Diagnosisprivate = data.Diagnosisprivate?.toString() ? data.Diagnosisprivate : patient.Diagnosisprivate;
 
         patient.treatment = data.treatment || patient.treatment;
-        patient.treatmentprivate = data.treatmentprivate.toString() ? data.treatmentprivate : patient.treatmentprivate;
+        patient.treatmentprivate = data.treatmentprivate?.toString() ? data.treatmentprivate : patient.treatmentprivate;
 
         patient.lastVisits = data.lastVisits || patient.lastVisits;
-        patient.lastVisitsprivate = data.lastVisitsprivate.toString() ? data.lastVisitsprivate : patient.lastVisitsprivate;
+        patient.lastVisitsprivate = data.lastVisitsprivate?.toString() ? data.lastVisitsprivate : patient.lastVisitsprivate;
 
         patient.doctorsWithpermission = data.doctorsWithpermission || patient.doctorsWithpermission;
-        patient.doctorsWithpermissionprivate = data.doctorsWithpermissionprivate.toString() ? data.doctorsWithpermissionprivate : patient.doctorsWithpermissionprivate;
+        patient.doctorsWithpermissionprivate = data.doctorsWithpermissionprivate?.toString() ? data.doctorsWithpermissionprivate : patient.doctorsWithpermissionprivate;
+
+        patient.report = data.report ? data.report : patient.report;
+        //patient.report = data.report?.toString() ? data.report : patient.report;
+
+        patient.radio = data.radio ? data.radio : patient.radio;
+        //patient.radio = data.radio?.toString() ? data.radio : patient.radio;
+
+        patient.symptoms = data.symptoms || patient.symptoms;
+        //patient.symptomsprivate = data.symptomsprivate.toString() ? data.symptomsprivate : patient.symptomsprivate;
+
 
         await ctx.stub.putState(
             patientID,
@@ -280,6 +285,45 @@ export class FabCar extends Contract {
         console.info(allResults);
         return JSON.stringify(allResults);
     }
+
+    public async addDoctorToAsset(ctx: Context, assetID: string, doctorID: string) {
+        console.info('============= START : changeCarOwner ===========');
+
+        const patientAsBytes = await ctx.stub.getState(assetID); // get the car from chaincode state
+        if (!patientAsBytes || patientAsBytes.length === 0) {
+            throw new Error(`${assetID} does not exist`);
+        }
+        const patient: Patient = JSON.parse(patientAsBytes.toString());
+        patient.doctorsWithpermission.toString().concat(',', doctorID)
+
+        await ctx.stub.putState(assetID, Buffer.from(JSON.stringify(patient)));
+        return patient
+    }
+
+    public async remouveDoctorToAsset(ctx: Context, assetID: string, doctorID: string) {
+        console.info('============= START : changeCarOwner ===========');
+
+        const patientAsBytes = await ctx.stub.getState(assetID); // get the car from chaincode state
+        if (!patientAsBytes || patientAsBytes.length === 0) {
+            throw new Error(`${assetID} does not exist`);
+        }
+        const patient: Patient = JSON.parse(patientAsBytes.toString());
+        patient.doctorsWithpermission.replace(doctorID, '')
+
+        await ctx.stub.putState(assetID, Buffer.from(JSON.stringify(patient)));
+
+    }
+
+
+
+
+
+
+
+
+
+
+
 
     // public async changeCarOwner(ctx: Context, carNumber: string, newOwner: string) {
     //     console.info('============= START : changeCarOwner ===========');

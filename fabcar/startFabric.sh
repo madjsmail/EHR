@@ -32,7 +32,7 @@ rm -rf javascript/wallet/*
 rm -rf java/wallet/*
 rm -rf typescript/wallet/*
 rm -rf go/wallet/*
-
+rm -ff wallet/*
 # launch network; create channel and join peer to channel
 pushd ../test-network
 ./network.sh down

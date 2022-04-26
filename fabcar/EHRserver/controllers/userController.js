@@ -13,8 +13,8 @@ const { v4: uuidv4 } = require("uuid");
 const genWallet = require("./helpers/user/genWallet");
 const authMid = require("../middleware/isAuth");
 exports.deleteUser = async (req, res, next) => {
-  
-  
+
+
   couch
     .del(
       "users",
@@ -323,4 +323,46 @@ exports.updateUser = async (req, res, next) => {
       return;
     }
   );
+};
+
+
+
+
+exports.getAllDoctors = async (req, res, next) => {
+
+  const mangoQuery = {
+    selector: {
+      "role": "doctor"
+    }
+  };
+
+  const parameters = {};
+  couch.mango("users", mangoQuery, parameters).then(
+    ({ data, headers, status }) => {
+      // data is json response
+      // headers is an object with all response headers
+      // status is statusCode number
+      delete data;
+
+      res
+        .json({
+          data,
+        })
+        .status(200);
+      return;
+    },
+    (err) => {
+      console.log(err);
+      res
+        .json({
+          err,
+        })
+        .status(300);
+      throw new Error(err).message;
+      // either request error occured
+      // ...or err.code=EDOCMISSING if document is missing
+      // ...or err.code=EUNKNOWN if statusCode is unexpected
+    }
+  );
+
 };

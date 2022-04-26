@@ -9,12 +9,13 @@ const getAllAssetHelper = require("./helpers/assets/getAllAssets");
 const getOneAssetHelper = require("./helpers/assets/getOneAsset");
 const AssetExists = require("./helpers/assets/AssetExists");
 const authMid = require("../middleware/isAuth");
+const checkPermition = require('./helpers/assets/checkpermitions');
 exports.deleteAsset = async (req, res, next) => {
   /**
    * Admin
    */
   try {
-    deleteAssetHelper.deleteAsset(req.params.patientID,authMid.decodedToken(req, res, next).id);
+    deleteAssetHelper.deleteAsset(req.params.patientID, authMid.decodedToken(req, res, next).id);
     res.json({
       message: "asset deleted",
     });
@@ -71,22 +72,54 @@ exports.getOneAssets = async (req, res, next) => {
   //   "**************************get one asset ****" + req.params.patientID
   // );
 
-  if (
-    !(
-      authMid.decodedToken(req, res, next).role == "admin" ||
-      req.params.patientID == authMid.decodedToken(req, res, next).id
-    )
-  ) {
-    res.status(401).json({
-      message: "you are not allowed this action ",
-    });
-    throw new Error("you are not allowed this action ").message;
-  }
+  // if (
+  //   !(
+  //     authMid.decodedToken(req, res, next).role == "admin" ||
+  //     req.params.patientID == authMid.decodedToken(req, res, next).id
+  //   )
+  // ) {
+  //   res.status(401).json({
+  //     message: "you are not allowed this action ",
+  //   });
+  //   throw new Error("you are not allowed this action ").message;
+  // }
+
   const info = await AssetExists.assetExist(
     req.params.patientID,
     authMid.decodedToken(req, res, next).id
   );
+
+
+
+
+
+
+  // const info = await AssetExists.assetExist(
+  //   req.params.patientID,
+  //   authMid.decodedToken(req, res, next).id
+  // );
+
+
+
+
+
+
   if (info) {
+
+
+    console.log(await checkPermition.checkPermition(req.params.patientID, authMid.decodedToken(req, res, next).id));
+
+    if (!await checkPermition.checkPermition(req.params.patientID, authMid.decodedToken(req, res, next).id)) {
+      res.status(400)
+        .send({
+          message: "you don't have access to this route"
+        });
+
+      throw new Error("you don't have access to this route").stack;
+    }
+
+
+
     getOneAssetHelper
       .getOneAssets(
         req.params.patientID,
@@ -108,20 +141,21 @@ exports.getOneAssets = async (req, res, next) => {
   res.json({
     message: "error with  id code : code if false or a  patient with this id don't exsite",
   });
+  throw new Error("error with  id code : code if false or a  patient with this id don't exsite").stack;
 };
 
 exports.updateAsset = async (req, res, next) => {
-  if (
-    !(
-      authMid.decodedToken(req, res, next).role == "admin" ||
-      req.params.patientID == authMid.decodedToken(req, res, next).id
-    )
-  ) {
-    res.status(401).json({
-      message: "you are not allowed this action ",
-    });
-    throw new Error("you are not allowed this action ").message;
-  }
+  // if (
+  //   !(
+  //     authMid.decodedToken(req, res, next).role == "admin" ||
+  //     req.params.patientID == authMid.decodedToken(req, res, next).id
+  //   )
+  // ) {
+  //   res.status(401).json({
+  //     message: "you are not allowed this action ",
+  //   });
+  //   throw new Error("you are not allowed this action ").message;
+  // }
   console.log(req.body);
 
   console.log(req.params.patientID);
@@ -204,4 +238,11 @@ exports.getAssetHistory = async (req, res, next) => {
   });
 };
 
-exports.addDocPermission = async (req, res, next) => {};
+
+
+
+
+
+
+
+exports.addDocPermission = async (req, res, next) => { };

@@ -17,6 +17,9 @@ async function main() {
       __dirname,
       "..",
       "..",
+      "..",
+
+
       "test-network",
       "organizations",
       "peerOrganizations",
@@ -26,15 +29,15 @@ async function main() {
     let ccp = JSON.parse(fs.readFileSync(ccpPath, "utf8"));
 
     // Create a new file system based wallet for managing identities.
-    const walletPath = path.join(process.cwd(), "wallet");
+    const walletPath = path.join(process.cwd(), "..", "..", "wallet");
     const wallet = await Wallets.newFileSystemWallet(walletPath);
     console.log(`Wallet path: ${walletPath}`);
 
     // Check to see if we've already enrolled the user.
-    const identity = await wallet.get("appUser");
+    const identity = await wallet.get("62ec04ec-5335-426c-9cf5-698b5cacd5b0");
     if (!identity) {
       console.log(
-        'An identity for the user "appUser" does not exist in the wallet'
+        'An identity for the user "62ec04ec-5335-426c-9cf5-698b5cacd5b0" does not exist in the wallet'
       );
       console.log("Run the registerUser.js application before retrying");
       return;
@@ -44,7 +47,7 @@ async function main() {
     const gateway = new Gateway();
     await gateway.connect(ccp, {
       wallet,
-      identity: "appUser",
+      identity: "62ec04ec-5335-426c-9cf5-698b5cacd5b0",
       discovery: { enabled: true, asLocalhost: true },
     });
 
@@ -57,11 +60,8 @@ async function main() {
     // Submit the specified transaction.
     // createCar transaction - requires 5 argument, ex: ('createCar', 'CAR12', 'Honda', 'Accord', 'Black', 'Tom')
     // changeCarOwner transaction - requires 2 args , ex: ('changeCarOwner', 'CAR12', 'Dave')
-    const data = await contract.submitTransaction(
-      "AssetExists",
-      "fd797e3d-3994-41af-8d48-1bcb47f763a2-"
-      /*"e4fcce82-3634-4dae-94df-1374df7fbee9"*/
-    );
+
+    const data = await contract.evaluateTransaction("checkPermissions", "62ec04ec-5335-426c-9cf5-698b5cacd5b0", "59b3412a-6fbd-41df-9e23-5c14cde83bdc");
 
     console.log("access granted");
     console.log(JSON.parse(data));

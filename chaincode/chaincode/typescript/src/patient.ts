@@ -7,16 +7,16 @@ export class Patient {
 
     // public patientID: string;
     // public patientIDprivate: string;
-    public firstName: string;
-    public firstNameprivate: string;
-    public lastName: string;
-    public lastNameprivate: string;
-    public birthday: string;
-    public birthdayprivate: string;
-    public contact: string;
-    public contactprivate: string;
-    public address: string;
-    public addressprivate: string;
+    // public firstName: string;
+    // public firstNameprivate: string;
+    // public lastName: string;
+    // public lastNameprivate: string;
+    // public birthday: string;
+    // public birthdayprivate: string;
+    // public contact: string;
+    // public contactprivate: string;
+    // public address: string;
+    // public addressprivate: string;
     public bloodGroup: string;
     public bloodGroupprivate: string;
     public Allergies: string;
@@ -29,4 +29,13 @@ export class Patient {
     public lastVisitsprivate: string;
     public doctorsWithpermission: string;
     public doctorsWithpermissionprivate: string;
+    public report: string;
+    public reportprivate: string;
+    public radio: string;
+    public radioprivate: string;
+    public symptoms: string;
+    public symptomsprivate: string;
+
+
+
 }

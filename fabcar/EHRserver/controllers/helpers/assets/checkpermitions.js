@@ -2,7 +2,7 @@ const { Gateway, Wallets } = require("fabric-network");
 const fs = require("fs");
 const path = require("path");
 
-exports.getOneAssets = async (patientID, currentUser) => {
+exports.checkPermition = async (patientID, currentUser) => {
   try {
     // load the network configuration
     const ccpPath = path.resolve(
@@ -21,7 +21,7 @@ exports.getOneAssets = async (patientID, currentUser) => {
     let ccp = JSON.parse(fs.readFileSync(ccpPath, "utf8"));
 
     // Create a new file system based wallet for managing identities.
-    const walletPath = path.join(process.cwd(), "wallet");
+    const walletPath = path.join(process.cwd(), "..", "wallet");
     const wallet = await Wallets.newFileSystemWallet(walletPath);
     console.log(`Wallet path: ${walletPath}`);
 
@@ -56,11 +56,11 @@ exports.getOneAssets = async (patientID, currentUser) => {
     const result = await contract.evaluateTransaction(
       "checkPermissions",
       `${patientID}`,
-      `${doctorID}`
+      `${currentUser}`
     );
 
     await gateway.disconnect();
-    return result;
+    return JSON.parse(result);
   } catch (error) {
     console.error(`Failed to submit transaction: ${error}`);
     throw new Error(error).message;

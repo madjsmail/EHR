@@ -18,6 +18,9 @@ async function main() {
       __dirname,
       "..",
       "..",
+      "..",
+
+
       "test-network",
       "organizations",
       "peerOrganizations",
@@ -31,12 +34,12 @@ async function main() {
     const ca = new FabricCAServices(caURL);
 
     // Create a new file system based wallet for managing identities.
-    const walletPath = path.join(process.cwd(), "wallet");
+    const walletPath = path.join(process.cwd(), "..", "..", "wallet");
     const wallet = await Wallets.newFileSystemWallet(walletPath);
     console.log(`Wallet path: ${walletPath}`);
 
     // Check to see if we've already enrolled the user.
-    const userIdentity = await wallet.get("madjid");
+    const userIdentity = await wallet.get("appUser");
     if (userIdentity) {
       console.log(
         'An identity for the user "appUser" already exists in the wallet'
@@ -55,7 +58,7 @@ async function main() {
     }
 
     // build a user object for authenticating with the CA
-   
+
     const provider = wallet
       .getProviderRegistry()
       .getProvider(adminIdentity.type);
@@ -65,13 +68,13 @@ async function main() {
     const secret = await ca.register(
       {
         affiliation: "org1.department1",
-        enrollmentID: "madjid",
+        enrollmentID: "appUser",
         role: "superadmin",
       },
       adminUser
     );
     const enrollment = await ca.enroll({
-      enrollmentID: "madjid",
+      enrollmentID: "appUser",
       enrollmentSecret: secret,
     });
     const x509Identity = {
@@ -82,7 +85,7 @@ async function main() {
       mspId: "Org1MSP",
       type: "X.509",
     };
-    await wallet.put("madjid", x509Identity);
+    await wallet.put("appUser", x509Identity);
     console.log(
       'Successfully registered and enrolled admin user "appUser" and imported it into the wallet'
     );

@@ -61,22 +61,22 @@ exports.postLogin = async (req, res, next) => {
     //   email: email
     // });
 
-
-
+  
+    
     const user = await couch
       .get("users", email.toString().trim())
       .then((data) => {
         return data.data;
-      }).catch((error) => {
+      }).catch((error)=>{
         const err = new Error(error);
         err.statusCode = 401;
 
         res.status(err.statusCode).send({
-          message: "user with this email not found!"
-        });
+          message :"user with this email not found!"
+        })
         throw err.message;
-        return;
-      });
+
+      })
 
 
 
